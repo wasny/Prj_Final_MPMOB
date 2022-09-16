@@ -20,6 +20,11 @@
         <v-icon>mdi-dialpad</v-icon>
       </v-btn>
 
+      <v-btn to="/cadastrados" text>
+        <span class="mr-2">Cadastrados</span>
+        <v-icon>mdi-arrow-up-bold-box-outline</v-icon>
+      </v-btn>
+
       <v-btn to="/sobre" text>
         <span class="mr-2">Sobre</span>
         <v-icon>mdi-help</v-icon>
