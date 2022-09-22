@@ -13,34 +13,39 @@
             <v-row>
 
               <v-col cols="6">
-                <v-text-field label="Código"></v-text-field>
+                <v-text-field v-model="cadastro.codigo" label="Código"></v-text-field>
               </v-col>
 
               <v-col cols="6">
-                <v-text-field label="Descrição"></v-text-field>
+                <v-text-field v-model="cadastro.descricao" label="Descrição"></v-text-field>
               </v-col>
 
               <v-col cols="12">
-                <v-text-field label="Nome"></v-text-field>
+                <v-text-field v-model="cadastro.nome" label="Nome"></v-text-field>
               </v-col>
 
               <v-col cols="6">
-                <v-text-field label="Preço"></v-text-field>
+                <v-text-field v-model="cadastro.preco" label="Preço"></v-text-field>
               </v-col>
 
               <v-col cols="6">
-                <v-text-field label="Quantidade"></v-text-field>
+                <v-text-field v-model="cadastro.qnt" label="Quantidade"></v-text-field>
               </v-col>
             </v-row>
 
             <v-row>
               <v-col class="text-left">
-                <v-btn class="primary">Salvar</v-btn>
+                <v-btn class="primary" @click="salvarCadastro">Salvar</v-btn>
+              </v-col>
+
+              <v-col class="text-left">
+                <v-btn to="/" text class="primary">Cancelar</v-btn>
               </v-col>
 
               <v-col class="text-right">
-                <v-btn to="/" text class="primary">Cancelar</v-btn>
+                <v-btn to="/cadastrados" text class="primary">Cadastrados</v-btn>
               </v-col>
+
             </v-row>
           </v-col>
         </v-row>
@@ -50,3 +55,42 @@
     </v-main>
   </v-app>
 </template>
+
+<script>
+export default {
+  name: "App",
+
+  components: {},
+
+  data: () => ({
+    cadastro: {
+      codigo: "",
+      descricao: "",
+      nome: "",
+      preco: "",
+      qnt: "",
+    },
+    cadastrados: [],
+  }),
+  methods: {
+
+    limpaCadastro() {
+      this.cadastro = {
+        codigo: "",
+        descricao: "",
+        nome: "",
+        preco: "",
+        qnt: "",
+      };
+    },
+
+    salvarCadastro() {
+      this.cadastrados.push(this.cadastro);
+      this.limpaCadastro();
+    },
+    selecionaProduto(p) {
+      this.cadastro = p;
+    },
+  }
+};
+</script>

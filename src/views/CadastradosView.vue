@@ -16,9 +16,20 @@
                     <th class="text-left" style="width: 15%">Total</th>
                 </tr>
             </thead>
+            <tbody>
+                <tr v-for="(cadastro, indice) in cadastrados" :key="indice">
+                    <td> {{cadastro.codigo}}</td>
+                    <td> {{cadastro.categoria}}</td>
+                    <td> {{cadastro.nome}}</td>
+                    <td> {{cadastro.preco}}</td>
+                    <td> {{cadastro.qtn}}</td>
+                </tr>
+            </tbody>
         </v-simple-table>
-        <v-col class="text-right">
-            <v-btn to="/" text class="primary">Voltar</v-btn>
+
+        <v-col class="text-left">
+            <v-btn to="/cadastro" text class="primary">Novo Cadastro</v-btn>
+            <v-btn to="/" text class="primary">Home</v-btn>
         </v-col>
     </v-app>
-</template>
+</template>>
