@@ -9,7 +9,7 @@
             <thead>
                 <tr>
                     <th class="text-left" style="width: 15%">Código</th>
-                    <th class="text-left" style="width: 15%">Categoria</th>
+                    <th class="text-left" style="width: 15%">Descrição</th>
                     <th class="text-left" style="width: 40%">Nome</th>
                     <th class="text-left" style="width: 10%">Preço</th>
                     <th class="text-left" style="width: 5%">Qtd</th>
@@ -17,12 +17,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(cadastro, indice) in cadastrados" :key="indice">
-                    <td> {{cadastro.codigo}}</td>
-                    <td> {{cadastro.categoria}}</td>
-                    <td> {{cadastro.nome}}</td>
-                    <td> {{cadastro.preco}}</td>
-                    <td> {{cadastro.qtn}}</td>
+                <tr v-for="(c, indice) in cadastrados" :key="indice">
+                    <td> {{c.codigo}}</td>
+                    <td> {{c.descricao}}</td>
+                    <td> {{c.nome}}</td>
+                    <td> {{c.preco}}</td>
+                    <td> {{c.qnt}}</td>
+                    <td> {{c.total}}</td>
                 </tr>
             </tbody>
         </v-simple-table>
@@ -32,4 +33,4 @@
             <v-btn to="/" text class="primary">Home</v-btn>
         </v-col>
     </v-app>
-</template>>
+</template>

@@ -49,8 +49,6 @@
             </v-row>
           </v-col>
         </v-row>
-        <v-row class="text-center lighten-4 blue">
-        </v-row>
       </v-container>
     </v-main>
   </v-app>
@@ -69,10 +67,25 @@ export default {
       nome: "",
       preco: "",
       qnt: "",
+      total: "",
     },
     cadastrados: [],
   }),
   methods: {
+
+    soma() {
+      let s = this.cadastro.preco * this.cadastro.qnt;
+      this.cadastro.total = s;
+    },
+
+    addLocal() {
+      window.localStorage.setItem('listaCadastrados', JSON.stringify(this.cadastrados));
+    },
+
+    readCad() {
+      var listaDisc = JSON.parse(window.localStorage.getItem('listaCadastrados'));
+      this.cadastrados = (listaDisc != null) ? listaDisc : [];
+    },
 
     limpaCadastro() {
       this.cadastro = {
@@ -85,11 +98,13 @@ export default {
     },
 
     salvarCadastro() {
-      this.cadastrados.push(this.cadastro);
-      this.limpaCadastro();
-    },
-    selecionaProduto(p) {
-      this.cadastro = p;
+      if (this.cadastro != null) {
+        this.soma();
+        this.cadastrados.push(this.cadastro);
+        this.addLocal();
+        this.limpaCadastro();
+
+      }
     },
   }
 };
