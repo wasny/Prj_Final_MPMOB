@@ -34,3 +34,24 @@
         </v-col>
     </v-app>
 </template>
+<script>
+export default {
+    name: "App",
+
+    components: {},
+
+    data: () => ({
+        cadastrados: [],
+    }),
+
+    methods: {
+        readCad() {
+            var listaDisc = JSON.parse(window.localStorage.getItem('listaCadastrados'));
+            this.cadastrados = (listaDisc != null) ? listaDisc : [];
+        },
+    },
+    beforeMount() {
+        this.readCad();
+    }
+};
+</script>

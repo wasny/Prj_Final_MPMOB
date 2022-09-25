@@ -13,7 +13,7 @@
             <v-row>
 
               <v-col cols="6">
-                <v-text-field v-model="cadastro.codigo" label="Código"></v-text-field>
+                <v-text-field v-model="cadastro.codigo" label="Código" required></v-text-field>
               </v-col>
 
               <v-col cols="6">
@@ -79,12 +79,9 @@ export default {
     },
 
     addLocal() {
+      this.cadastrados = (window.localStorage.getItem('listaCadastrados') != null) ? JSON.parse(window.localStorage.getItem('listaCadastrados')) : [];
+      this.cadastrados.push(this.cadastro);
       window.localStorage.setItem('listaCadastrados', JSON.stringify(this.cadastrados));
-    },
-
-    readCad() {
-      var listaDisc = JSON.parse(window.localStorage.getItem('listaCadastrados'));
-      this.cadastrados = (listaDisc != null) ? listaDisc : [];
     },
 
     limpaCadastro() {
@@ -100,10 +97,8 @@ export default {
     salvarCadastro() {
       if (this.cadastro != null) {
         this.soma();
-        this.cadastrados.push(this.cadastro);
         this.addLocal();
         this.limpaCadastro();
-
       }
     },
   }
