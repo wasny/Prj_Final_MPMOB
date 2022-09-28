@@ -10,10 +10,11 @@
                 <tr>
                     <th class="text-left" style="width: 15%">Código</th>
                     <th class="text-left" style="width: 15%">Descrição</th>
-                    <th class="text-left" style="width: 40%">Nome</th>
+                    <th class="text-left" style="width: 25%">Nome</th>
                     <th class="text-left" style="width: 10%">Preço</th>
                     <th class="text-left" style="width: 5%">Qtd</th>
                     <th class="text-left" style="width: 15%">Total</th>
+                    <th class="text-center" style="width: 15%"> Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,12 +25,16 @@
                     <td> {{c.preco}}</td>
                     <td> {{c.qnt}}</td>
                     <td> {{c.total}}</td>
+                    <td>
+                        <v-btn class="primary">Editar</v-btn> &nbsp;
+                        <v-btn class="red" @click="excluirProduto(c)">Excluir</v-btn>
+                    </td>
                 </tr>
             </tbody>
         </v-simple-table>
 
         <v-col class="text-left">
-            <v-btn to="/cadastro" text class="primary">Novo Cadastro</v-btn>
+            <v-btn to="/cadastro" text class="primary">Novo Cadastro</v-btn> &nbsp;
             <v-btn to="/" text class="primary">Home</v-btn>
         </v-col>
     </v-app>
@@ -49,6 +54,13 @@ export default {
             var listaDisc = JSON.parse(window.localStorage.getItem('listaCadastrados'));
             this.cadastrados = (listaDisc != null) ? listaDisc : [];
         },
+
+        excluirProduto(c) {
+            if (confirm('Deseja Excluir?')) {
+                this.cadastrados.pop(c);
+                window.localStorage.setItem('listaCadastrados', JSON.stringify(this.cadastrados));
+            }
+        }
     },
     beforeMount() {
         this.readCad();
