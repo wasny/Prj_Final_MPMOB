@@ -30,7 +30,7 @@ const routes = [
     component: CadastradosView,
   },
   {
-    path: '/edita',
+    path: '/edita/:indice',
     name: 'edita',
     component: EditaView,
   },

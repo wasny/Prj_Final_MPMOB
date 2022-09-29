@@ -26,8 +26,12 @@
                     <td> {{c.qnt}}</td>
                     <td> {{c.total}}</td>
                     <td>
-                        <v-btn class="primary" @click="abrirEdicao(indice)">Editar</v-btn> &nbsp;
-                        <v-btn class="red" @click="excluirProduto(c)">Excluir</v-btn>
+                        <v-btn class="primary" @click="abrirEdicao(indice)">
+                            <v-icon>{{ icons.mdiPencil }}</v-icon>
+                        </v-btn> &nbsp;
+                        <v-btn class="red" @click="excluirProduto(c)">
+                            <v-icon>{{ icons.mdiDelete }}</v-icon>
+                        </v-btn>
                     </td>
                 </tr>
             </tbody>
@@ -70,6 +74,11 @@
     </v-app>
 </template>
 <script>
+import {
+    mdiPencil,
+    mdiDelete,
+} from '@mdi/js'
+
 export default {
     name: "Cadastrados",
 
@@ -78,7 +87,11 @@ export default {
     data: () => ({
         cadastrados: [],
         dialog: false,
-        indiceExclusao: -1
+        indiceExclusao: -1,
+        icons: {
+            mdiPencil,
+            mdiDelete,
+        },
     }),
 
     methods: {
