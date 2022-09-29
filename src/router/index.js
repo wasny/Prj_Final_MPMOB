@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CadastroView from '../views/CadastroView.vue'
+import EditaView from '../views/EditaView.vue'
 import CadastradosView from '../views/CadastradosView.vue'
 
 Vue.use(VueRouter)
@@ -27,6 +28,11 @@ const routes = [
     path: '/cadastrados',
     name: 'cadastrados',
     component: CadastradosView,
+  },
+  {
+    path: '/edita',
+    name: 'edita',
+    component: EditaView,
   },
 ]
 

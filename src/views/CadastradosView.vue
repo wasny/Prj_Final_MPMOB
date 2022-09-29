@@ -26,7 +26,7 @@
                     <td> {{c.qnt}}</td>
                     <td> {{c.total}}</td>
                     <td>
-                        <v-btn class="primary">Editar</v-btn> &nbsp;
+                        <v-btn class="primary" @click="abrirEdicao(indice)">Editar</v-btn> &nbsp;
                         <v-btn class="red" @click="excluirProduto(c)">Excluir</v-btn>
                     </td>
                 </tr>
@@ -37,16 +37,48 @@
             <v-btn to="/cadastro" text class="primary">Novo Cadastro</v-btn> &nbsp;
             <v-btn to="/" text class="primary">Home</v-btn>
         </v-col>
+
+        <v-dialog v-model="dialog" width="500">
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
+                    Click Me
+                </v-btn>
+            </template>
+
+            <v-card>
+                <v-card-title class="text-h5 grey lighten-2">
+                    Confirmação
+                </v-card-title>
+
+                <v-card-text>
+                    Deseja Excluir o registro?
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" text @click="confirmaExcluirProduto">
+                        Sim
+                    </v-btn>
+                    <v-btn color="primary" text @click="dialog = false">
+                        Cancelar
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-app>
 </template>
 <script>
 export default {
-    name: "App",
+    name: "Cadastrados",
 
     components: {},
 
     data: () => ({
         cadastrados: [],
+        dialog: false,
+        indiceExclusao: -1
     }),
 
     methods: {
@@ -56,10 +88,19 @@ export default {
         },
 
         excluirProduto(c) {
-            if (confirm('Deseja Excluir?')) {
-                this.cadastrados.pop(c);
-                window.localStorage.setItem('listaCadastrados', JSON.stringify(this.cadastrados));
-            }
+            this.dialog = true;
+            this.indiceExclusao = c;
+        },
+
+        confirmaExcluirProduto() {
+            this.cadastrados.pop(this.indiceExclusao);
+            window.localStorage.setItem('listaCadastrados', JSON.stringify(this.cadastrados));
+            this.dialog = false;
+            this.indiceExclusao = -1;
+        },
+
+        abrirEdicao(indice) {
+            this.$router.push({ name: 'edita', params: { 'indice': indice } });
         }
     },
     beforeMount() {
