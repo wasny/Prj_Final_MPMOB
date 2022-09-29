@@ -90,7 +90,7 @@ export default {
 
     addLocal() {
       this.cadastrados = (window.localStorage.getItem('listaCadastrados') != null) ? JSON.parse(window.localStorage.getItem('listaCadastrados')) : [];
-      this.cadastrados.push(this.cadastro);
+      this.cadastrados[this.indice] = this.cadastro;
       window.localStorage.setItem('listaCadastrados', JSON.stringify(this.cadastrados));
     },
 
