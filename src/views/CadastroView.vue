@@ -5,28 +5,30 @@
   <v-container>
     <v-row class="text-center">
       <v-col offset-lg="2" lg="8" md="12">
-        <v-row>
+        <v-main>
+          <v-row>
 
-          <v-col cols="6">
-            <v-text-field v-model="cadastro.codigo" label="Código" required></v-text-field>
-          </v-col>
+            <v-col cols="6">
+              <v-text-field v-model="cadastro.codigo" label="Código" required></v-text-field>
+            </v-col>
 
-          <v-col cols="6">
-            <v-text-field v-model="cadastro.descricao" label="Descrição"></v-text-field>
-          </v-col>
+            <v-col cols="6">
+              <v-text-field v-model="cadastro.descricao" label="Descrição"></v-text-field>
+            </v-col>
 
-          <v-col cols="12">
-            <v-text-field v-model="cadastro.nome" label="Nome"></v-text-field>
-          </v-col>
+            <v-col cols="12">
+              <v-text-field v-model="cadastro.nome" label="Nome"></v-text-field>
+            </v-col>
 
-          <v-col cols="6">
-            <v-text-field v-model="cadastro.preco" label="Preço"></v-text-field>
-          </v-col>
+            <v-col cols="6">
+              <v-text-field v-model="cadastro.preco" label="Preço"></v-text-field>
+            </v-col>
 
-          <v-col cols="6">
-            <v-text-field v-model="cadastro.qnt" label="Quantidade"></v-text-field>
-          </v-col>
-        </v-row>
+            <v-col cols="6">
+              <v-text-field v-model="cadastro.qnt" label="Quantidade"></v-text-field>
+            </v-col>
+          </v-row>
+        </v-main>
 
         <v-row>
 
