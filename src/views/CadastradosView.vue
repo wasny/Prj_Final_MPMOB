@@ -1,16 +1,11 @@
 <template>
-    <v-app>
-        <v-app-bar app color="primary" dark>
-            <div class="d-flex align-center">
-                <h1>Produtos Cadastrados</h1>
-            </div>
-        </v-app-bar>
+    <v-container>
         <v-simple-table>
             <thead>
                 <tr>
                     <th class="text-left" style="width: 15%">Código</th>
                     <th class="text-left" style="width: 15%">Descrição</th>
-                    <th class="text-left" style="width: 25%">Nome</th>
+                    <th class="text-left" style="width: 20%">Nome</th>
                     <th class="text-left" style="width: 10%">Preço</th>
                     <th class="text-left" style="width: 5%">Qtd</th>
                     <th class="text-left" style="width: 15%">Total</th>
@@ -26,10 +21,10 @@
                     <td> {{c.qnt}}</td>
                     <td> {{c.total}}</td>
                     <td>
-                        <v-btn class="primary" @click="abrirEdicao(indice)">
+                        <v-btn @click="abrirEdicao(indice)" color="#2E4053" fab small dark>
                             <v-icon>{{ icons.mdiPencil }}</v-icon>
-                        </v-btn> &nbsp;
-                        <v-btn class="red" @click="excluirProduto(c)">
+                        </v-btn>
+                        <v-btn @click="excluirProduto(indice)" color=" red" fab small dark>
                             <v-icon>{{ icons.mdiDelete }}</v-icon>
                         </v-btn>
                     </td>
@@ -38,17 +33,11 @@
         </v-simple-table>
 
         <v-col class="text-left">
-            <v-btn to="/cadastro" text class="primary">Novo Cadastro</v-btn> &nbsp;
-            <v-btn to="/" text class="primary">Home</v-btn>
+            <v-btn class="ma-2" outlined to="/cadastro">Novo Cadastro</v-btn> &nbsp;
+            <v-btn class="ma-2" outlined to="/">Home</v-btn>
         </v-col>
 
         <v-dialog v-model="dialog" width="500">
-            <template v-slot:activator="{ on, attrs }">
-                <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
-                    Click Me
-                </v-btn>
-            </template>
-
             <v-card>
                 <v-card-title class="text-h5 grey lighten-2">
                     Confirmação
@@ -71,7 +60,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-    </v-app>
+    </v-container>
 </template>
 <script>
 import {
@@ -103,10 +92,11 @@ export default {
         excluirProduto(c) {
             this.dialog = true;
             this.indiceExclusao = c;
+            console.log(this.indiceExclusao);
         },
 
         confirmaExcluirProduto() {
-            this.cadastrados.pop(this.indiceExclusao);
+            this.cadastrados.splice(this.indiceExclusao, 1);
             window.localStorage.setItem('listaCadastrados', JSON.stringify(this.cadastrados));
             this.dialog = false;
             this.indiceExclusao = -1;
