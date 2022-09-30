@@ -25,8 +25,8 @@
             <v-list-item-title>Cadastrados</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/sobre">
-            <v-list-item-title>Sobre</v-list-item-title>
+          <v-list-item a href="https://github.com/wasny/Prj_Final_MPMOB">
+            <v-list-item-title>Projeto</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>

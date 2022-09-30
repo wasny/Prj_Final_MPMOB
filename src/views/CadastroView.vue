@@ -1,7 +1,4 @@
 <template>
-
-
-
   <v-container>
     <v-row class="text-center">
       <v-col offset-lg="2" lg="8" md="12">
@@ -33,9 +30,20 @@
         <v-row>
 
           <v-col class="text-center">
-            <v-btn class="ma-2" outlined color="black" @click="salvarCadastro" small>
-              Salvar
+
+            <v-btn class="ma-2" outlined color="black" @click="salvarCadastro" small :disabled="dialog"
+              :loading="dialog">Salvar
             </v-btn>
+
+            <v-dialog v-model="dialog" hide-overlay persistent width="300">
+              <v-card color="primary" dark>
+                <v-card-text>
+                  Salvando Cadastro
+                  <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
+            
           </v-col>
 
           <v-col class="text-center">
@@ -69,7 +77,17 @@ export default {
       total: "",
     },
     cadastrados: [],
+    dialog: false,
   }),
+
+  watch: {
+    dialog(val) {
+      if (!val) return
+
+      setTimeout(() => (this.dialog = false), 1000)
+    },
+  },
+
   methods: {
 
     soma() {
@@ -97,7 +115,9 @@ export default {
       if (this.cadastro != null) {
         this.soma();
         this.addLocal();
+        this.dialog = true;
         this.limpaCadastro();
+
       }
     },
   }

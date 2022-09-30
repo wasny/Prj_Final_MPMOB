@@ -31,7 +31,18 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-col class="text-left">
-              <v-btn class="ma-2" outlined @click="salvarCadastro">Salvar</v-btn>
+              <v-btn class="ma-2" outlined color="black" @click="salvarCadastro" small :disabled="dialog"
+                :loading="dialog">
+                Salvar Edição
+              </v-btn>
+              <v-dialog v-model="dialog" hide-overlay persistent width="300">
+                <v-card color="primary" dark>
+                  <v-card-text>
+                    Salvando Edição
+                    <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+                  </v-card-text>
+                </v-card>
+              </v-dialog>
             </v-col>
 
             <v-col class="text-right">
@@ -61,8 +72,17 @@ export default {
       total: "",
     },
     cadastrados: [],
-    indice: -1
+    indice: -1,
+    dialog: false,
   }),
+
+  watch: {
+    dialog(val) {
+      if (!val) return
+
+      setTimeout(() => (this.dialog = false), 1000)
+    },
+  },
 
   mounted() {
     this.indice = this.$route.params.indice;
@@ -99,8 +119,9 @@ export default {
       if (this.cadastro != null) {
         this.soma();
         this.addLocal();
+        this.dialog = true;
         this.limpaCadastro();
-        this.$router.push({ name: 'cadastrados' });
+        setTimeout(() => (this.$router.push({ name: 'cadastrados' })), 1000);
       }
     },
   }
